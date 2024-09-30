@@ -83,6 +83,8 @@ pub struct Params {
     pub trusted_addresses: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(message, optional, tag="5")]
     pub min_gas_price: ::core::option::Option<cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+    #[prost(message, optional, tag="6")]
+    pub private_keyshare_price: ::core::option::Option<cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -101,6 +103,52 @@ pub struct PepNonce {
     pub address: ::prost::alloc::string::String,
     #[prost(uint64, tag="2")]
     pub nonce: u64,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RequestId {
+    #[prost(string, tag="1")]
+    pub creator: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub req_id: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PrivateRequest {
+    #[prost(string, tag="1")]
+    pub creator: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub req_id: ::prost::alloc::string::String,
+    #[prost(string, tag="3")]
+    pub pubkey: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag="5")]
+    pub encrypted_keyshares: ::prost::alloc::vec::Vec<super::common::EncryptedKeyshare>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ContractDetails {
+    #[prost(string, tag="1")]
+    pub registrar: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub contract_address: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RegisterdContract {
+    #[prost(string, tag="1")]
+    pub identity: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag="2")]
+    pub contracts: ::prost::alloc::vec::Vec<ContractDetails>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ExecuteContractMsg {
+    #[prost(string, tag="1")]
+    pub identity: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub pubkey: ::prost::alloc::string::String,
+    #[prost(string, tag="3")]
+    pub aggr_keyshare: ::prost::alloc::string::String,
 }
 /// GenesisState defines the pep module's genesis state.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -124,6 +172,8 @@ pub struct GenesisState {
     pub queued_pub_key: ::core::option::Option<super::common::QueuedPublicKey>,
     #[prost(uint64, tag="9")]
     pub request_count: u64,
+    #[prost(message, repeated, tag="10")]
+    pub request_id_list: ::prost::alloc::vec::Vec<RequestId>,
 }
 /// QueryParamsRequest is request type for the Query/Params RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -252,6 +302,40 @@ pub struct QueryPubKeyResponse {
     #[prost(message, optional, tag="2")]
     pub queued_pub_key: ::core::option::Option<super::common::QueuedPublicKey>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryShowPrivateKeyshareReqRequest {
+    #[prost(string, tag="1")]
+    pub req_id: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryShowPrivateKeyshareReqResponse {
+    #[prost(string, tag="1")]
+    pub creator: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub req_id: ::prost::alloc::string::String,
+    #[prost(string, tag="3")]
+    pub pubkey: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag="5")]
+    pub encrypted_keyshares: ::prost::alloc::vec::Vec<super::common::EncryptedKeyshare>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryDecryptDataRequest {
+    #[prost(string, tag="1")]
+    pub pubkey: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub aggr_keyshare: ::prost::alloc::string::String,
+    #[prost(string, tag="3")]
+    pub encrypted_data: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryDecryptDataResponse {
+    #[prost(string, tag="1")]
+    pub decrypted_data: ::prost::alloc::string::String,
+}
 /// MsgUpdateParams is the Msg/UpdateParams request type.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -259,8 +343,8 @@ pub struct MsgUpdateParams {
     /// authority is the address that controls the module (defaults to x/gov unless overwritten).
     #[prost(string, tag="1")]
     pub authority: ::prost::alloc::string::String,
-    /// params defines the module parameters to update.
-    ///
+    // params defines the module parameters to update.
+
     /// NOTE: All parameters must be supplied.
     #[prost(message, optional, tag="2")]
     pub params: ::core::option::Option<Params>,
@@ -317,6 +401,8 @@ pub struct MsgRequestGeneralKeyshare {
     pub creator: ::prost::alloc::string::String,
     #[prost(message, optional, tag="2")]
     pub estimated_delay: ::core::option::Option<::prost_types::Duration>,
+    #[prost(string, tag="3")]
+    pub req_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -335,6 +421,48 @@ pub struct MsgGetGeneralKeyshare {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgGetGeneralKeyshareResponse {
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgRequestPrivateIdentity {
+    #[prost(string, tag="1")]
+    pub creator: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub req_id: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgRequestPrivateIdentityResponse {
+    #[prost(string, tag="1")]
+    pub req_id: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgGetPrivateKeyshares {
+    #[prost(string, tag="1")]
+    pub creator: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub req_id: ::prost::alloc::string::String,
+    #[prost(string, tag="3")]
+    pub secp_pubkey: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgGetPrivateKeysharesResponse {
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgRegisterContract {
+    #[prost(string, tag="1")]
+    pub creator: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub contract_address: ::prost::alloc::string::String,
+    #[prost(string, tag="3")]
+    pub identity: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgRegisterContractResponse {
 }
 include!("fairyring.pep.tonic.rs");
 // @@protoc_insertion_point(module)

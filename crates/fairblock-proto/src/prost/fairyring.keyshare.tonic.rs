@@ -795,5 +795,32 @@ pub mod msg_client {
                 );
             self.inner.unary(req, path, codec).await
         }
+        pub async fn submit_encrypted_keyshare(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgSubmitEncryptedKeyshare>,
+        ) -> std::result::Result<
+            tonic::Response<super::MsgSubmitEncryptedKeyshareResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/fairyring.keyshare.Msg/SubmitEncryptedKeyshare",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("fairyring.keyshare.Msg", "SubmitEncryptedKeyshare"),
+                );
+            self.inner.unary(req, path, codec).await
+        }
     }
 }

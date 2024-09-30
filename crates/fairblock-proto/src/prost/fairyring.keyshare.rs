@@ -41,6 +41,24 @@ pub struct GeneralKeyShare {
     #[prost(uint64, tag="7")]
     pub received_block_height: u64,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ValidatorEncryptedKeyShare {
+    #[prost(string, tag="1")]
+    pub validator: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub requester: ::prost::alloc::string::String,
+    #[prost(string, tag="3")]
+    pub key_share: ::prost::alloc::string::String,
+    #[prost(uint64, tag="4")]
+    pub key_share_index: u64,
+    #[prost(uint64, tag="5")]
+    pub received_timestamp: u64,
+    #[prost(uint64, tag="6")]
+    pub received_block_height: u64,
+    #[prost(string, tag="7")]
+    pub identity: ::prost::alloc::string::String,
+}
 /// Params defines the parameters for the module.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -152,7 +170,7 @@ pub struct GenesisState {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct KeysharePacketData {
-    #[prost(oneof="keyshare_packet_data::Packet", tags="1, 2, 3, 4, 5")]
+    #[prost(oneof="keyshare_packet_data::Packet", tags="1, 2, 3, 4, 5, 6, 7, 8")]
     pub packet: ::core::option::Option<keyshare_packet_data::Packet>,
 }
 /// Nested message and enum types in `KeysharePacketData`.
@@ -169,7 +187,13 @@ pub mod keyshare_packet_data {
         #[prost(message, tag="4")]
         AggrKeyshareDataPacket(super::AggrKeyshareDataPacketData),
         #[prost(message, tag="5")]
+        EncryptedKeysharesPacketData(super::EncryptedKeysharesPacketData),
+        #[prost(message, tag="6")]
         CurrentKeysPacket(super::CurrentKeysPacketData),
+        #[prost(message, tag="7")]
+        RequestPrivKeysharePacket(super::RequestPrivateKeysharePacketData),
+        #[prost(message, tag="8")]
+        GetPrivateKeysharePacket(super::GetPrivateKeysharePacketData),
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -198,6 +222,22 @@ pub mod request_aggr_keyshare_packet_data {
         RequestId(::prost::alloc::string::String),
     }
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RequestPrivateKeysharePacketData {
+    #[prost(string, tag="1")]
+    pub requester: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub request_id: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RequestPrivateKeysharePacketAck {
+    #[prost(string, tag="1")]
+    pub identity: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub pubkey: ::prost::alloc::string::String,
+}
 /// RequestAggrKeysharePacketAck defines a struct for the packet acknowledgment
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -218,6 +258,22 @@ pub struct GetAggrKeysharePacketData {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAggrKeysharePacketAck {
+}
+/// GetPrivateKeysharePacketData defines a struct for the packet payload
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetPrivateKeysharePacketData {
+    #[prost(string, tag="1")]
+    pub identity: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub requester: ::prost::alloc::string::String,
+    #[prost(string, tag="3")]
+    pub secp_pubkey: ::prost::alloc::string::String,
+}
+/// GetPrivateKeysharePacketAck defines a struct for the packet acknowledgment
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetPrivateKeysharePacketAck {
 }
 /// AggrKeyshareDataPacketData defines a struct for the packet payload
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -244,6 +300,22 @@ pub struct AggrKeyshareDataPacketData {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AggrKeyshareDataPacketAck {
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EncryptedKeysharesPacketData {
+    #[prost(string, tag="1")]
+    pub identity: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub pubkey: ::prost::alloc::string::String,
+    #[prost(string, tag="3")]
+    pub request_id: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag="4")]
+    pub encrypted_keyshares: ::prost::alloc::vec::Vec<super::common::EncryptedKeyshare>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EncryptedKeysharesPacketAck {
 }
 /// CurrentKeysPacketData defines a struct for the packet payload
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -493,6 +565,26 @@ pub struct CounterPartyIbcInfo {
     #[prost(string, tag="4")]
     pub port_id: ::prost::alloc::string::String,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PrivateKeyshareRequest {
+    #[prost(string, tag="1")]
+    pub identity: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub pubkey: ::prost::alloc::string::String,
+    /// Used only when the request is made via IBC
+    #[prost(message, optional, tag="3")]
+    pub ibc_info: ::core::option::Option<IbcInfo>,
+    /// Used only when the request is made via IBC
+    #[prost(message, optional, tag="4")]
+    pub counterparty: ::core::option::Option<CounterPartyIbcInfo>,
+    #[prost(message, repeated, tag="5")]
+    pub encrypted_keyshares: ::prost::alloc::vec::Vec<super::common::EncryptedKeyshare>,
+    #[prost(string, tag="6")]
+    pub request_id: ::prost::alloc::string::String,
+    #[prost(bool, tag="7")]
+    pub sent: bool,
+}
 /// MsgUpdateParams is the Msg/UpdateParams request type.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -678,6 +770,28 @@ pub struct MsgCreateGeneralKeyShareResponse {
     pub success: bool,
     #[prost(string, tag="8")]
     pub error_message: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgSubmitEncryptedKeyshare {
+    #[prost(string, tag="1")]
+    pub creator: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub identity: ::prost::alloc::string::String,
+    #[prost(string, tag="3")]
+    pub encrypted_keyshare: ::prost::alloc::string::String,
+    #[prost(uint64, tag="4")]
+    pub key_share_index: u64,
+    #[prost(uint64, tag="5")]
+    pub received_timestamp: u64,
+    #[prost(uint64, tag="6")]
+    pub received_block_height: u64,
+    #[prost(string, tag="7")]
+    pub requester: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgSubmitEncryptedKeyshareResponse {
 }
 include!("fairyring.keyshare.tonic.rs");
 // @@protoc_insertion_point(module)

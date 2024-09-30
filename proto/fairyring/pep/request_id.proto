@@ -1,0 +1,35 @@
+syntax = "proto3";
+package fairyring.pep;
+
+import "gogoproto/gogo.proto";
+import "fairyring/common/shared_types.proto";
+
+option go_package = "github.com/Fairblock/fairyring/x/pep/types";
+
+message RequestId {
+  string creator = 1; 
+  string reqId = 2;
+}
+
+message PrivateRequest {
+  string creator = 1;
+  string req_id = 2;
+  string pubkey = 3;
+  repeated fairyring.common.EncryptedKeyshare encrypted_keyshares = 5;
+}
+
+message ContractDetails {
+  string registrar = 1;
+  string contract_address = 2;
+}
+
+message RegisterdContract {
+  string identity = 1;
+  repeated ContractDetails contracts = 2;
+}
+
+message ExecuteContractMsg {
+  string identity      = 1;
+  string pubkey        = 2;
+  string aggr_keyshare = 3;
+}

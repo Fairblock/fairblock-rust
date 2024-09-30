@@ -53,6 +53,25 @@ pub mod get_aggr_keyshare {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAggrKeyshareResponse {
 }
+/// GetPrivateKeyshare defines a struct for the data payload
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetPrivateKeyshare {
+    #[prost(string, tag="1")]
+    pub request_id: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub identity: ::prost::alloc::string::String,
+    #[prost(string, tag="3")]
+    pub requester: ::prost::alloc::string::String,
+    #[prost(string, tag="4")]
+    pub secp_pubkey: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetPrivateKeyshareResponse {
+    #[prost(string, tag="1")]
+    pub pubkey: ::prost::alloc::string::String,
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ActivePublicKey {
@@ -72,5 +91,29 @@ pub struct QueuedPublicKey {
     pub creator: ::prost::alloc::string::String,
     #[prost(uint64, tag="3")]
     pub expiry: u64,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RequestPrivateKeyshare {
+    #[prost(string, tag="1")]
+    pub creator: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub request_id: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EncryptedKeyshare {
+    #[prost(string, tag="1")]
+    pub requester: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag="2")]
+    pub private_keyshares: ::prost::alloc::vec::Vec<IndexedEncryptedKeyshare>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct IndexedEncryptedKeyshare {
+    #[prost(string, tag="1")]
+    pub encrypted_keyshare_value: ::prost::alloc::string::String,
+    #[prost(uint64, tag="2")]
+    pub encrypted_keyshare_index: u64,
 }
 // @@protoc_insertion_point(module)
