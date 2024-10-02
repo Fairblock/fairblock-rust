@@ -2,152 +2,153 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AggregatedKeyShare {
-    #[prost(uint64, tag="1")]
+    #[prost(uint64, tag = "1")]
     pub height: u64,
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub data: ::prost::alloc::string::String,
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub creator: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EncryptedTx {
-    #[prost(uint64, tag="1")]
+    #[prost(uint64, tag = "1")]
     pub target_height: u64,
-    #[prost(uint64, tag="2")]
+    #[prost(uint64, tag = "2")]
     pub index: u64,
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub data: ::prost::alloc::string::String,
-    #[prost(string, tag="4")]
+    #[prost(string, tag = "4")]
     pub creator: ::prost::alloc::string::String,
-    #[prost(message, optional, tag="5")]
+    #[prost(message, optional, tag = "5")]
     pub charged_gas: ::core::option::Option<cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
-    #[prost(uint64, tag="6")]
+    #[prost(uint64, tag = "6")]
     pub processed_at_chain_height: u64,
-    #[prost(bool, tag="7")]
+    #[prost(bool, tag = "7")]
     pub expired: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EncryptedTxArray {
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub encrypted_tx: ::prost::alloc::vec::Vec<EncryptedTx>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GeneralEncryptedTx {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub identity: ::prost::alloc::string::String,
-    #[prost(uint64, tag="2")]
+    #[prost(uint64, tag = "2")]
     pub index: u64,
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub data: ::prost::alloc::string::String,
-    #[prost(string, tag="4")]
+    #[prost(string, tag = "4")]
     pub creator: ::prost::alloc::string::String,
-    #[prost(message, optional, tag="5")]
+    #[prost(message, optional, tag = "5")]
     pub charged_gas: ::core::option::Option<cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GeneralEncryptedTxArray {
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub encrypted_tx: ::prost::alloc::vec::Vec<GeneralEncryptedTx>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenEncTxExecutionQueue {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub creator: ::prost::alloc::string::String,
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub request_id: ::prost::alloc::string::String,
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub identity: ::prost::alloc::string::String,
-    #[prost(string, tag="4")]
+    #[prost(string, tag = "4")]
     pub pubkey: ::prost::alloc::string::String,
-    #[prost(message, optional, tag="5")]
+    #[prost(message, optional, tag = "5")]
     pub tx_list: ::core::option::Option<GeneralEncryptedTxArray>,
-    #[prost(string, tag="6")]
+    #[prost(string, tag = "6")]
     pub aggr_keyshare: ::prost::alloc::string::String,
 }
 /// Params defines the parameters for the module.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Params {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub keyshare_channel_id: ::prost::alloc::string::String,
-    #[prost(bool, tag="2")]
+    #[prost(bool, tag = "2")]
     pub is_source_chain: bool,
-    #[prost(message, repeated, tag="3")]
+    #[prost(message, repeated, tag = "3")]
     pub trusted_counter_parties: ::prost::alloc::vec::Vec<TrustedCounterParty>,
-    #[prost(string, repeated, tag="4")]
+    #[prost(string, repeated, tag = "4")]
     pub trusted_addresses: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(message, optional, tag="5")]
+    #[prost(message, optional, tag = "5")]
     pub min_gas_price: ::core::option::Option<cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
-    #[prost(message, optional, tag="6")]
-    pub private_keyshare_price: ::core::option::Option<cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+    #[prost(message, optional, tag = "6")]
+    pub private_keyshare_price:
+        ::core::option::Option<cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TrustedCounterParty {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub client_id: ::prost::alloc::string::String,
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub connection_id: ::prost::alloc::string::String,
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub channel_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PepNonce {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub address: ::prost::alloc::string::String,
-    #[prost(uint64, tag="2")]
+    #[prost(uint64, tag = "2")]
     pub nonce: u64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RequestId {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub creator: ::prost::alloc::string::String,
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub req_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PrivateRequest {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub creator: ::prost::alloc::string::String,
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub req_id: ::prost::alloc::string::String,
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub pubkey: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag="5")]
+    #[prost(message, repeated, tag = "5")]
     pub encrypted_keyshares: ::prost::alloc::vec::Vec<super::common::EncryptedKeyshare>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ContractDetails {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub registrar: ::prost::alloc::string::String,
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub contract_address: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RegisterdContract {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub identity: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub contracts: ::prost::alloc::vec::Vec<ContractDetails>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExecuteContractMsg {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub identity: ::prost::alloc::string::String,
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub pubkey: ::prost::alloc::string::String,
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub aggr_keyshare: ::prost::alloc::string::String,
 }
 /// GenesisState defines the pep module's genesis state.
@@ -155,185 +156,188 @@ pub struct ExecuteContractMsg {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenesisState {
     /// params defines all the parameters of the module.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub params: ::core::option::Option<Params>,
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub port_id: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag="3")]
+    #[prost(message, repeated, tag = "3")]
     pub encrypted_tx_array: ::prost::alloc::vec::Vec<EncryptedTxArray>,
-    #[prost(message, repeated, tag="4")]
+    #[prost(message, repeated, tag = "4")]
     pub pep_nonce_list: ::prost::alloc::vec::Vec<PepNonce>,
     /// this line is used by starport scaffolding # genesis/proto/state
-    #[prost(message, repeated, tag="6")]
+    #[prost(message, repeated, tag = "6")]
     pub aggregated_key_share_list: ::prost::alloc::vec::Vec<AggregatedKeyShare>,
-    #[prost(message, optional, tag="7")]
+    #[prost(message, optional, tag = "7")]
     pub active_pub_key: ::core::option::Option<super::common::ActivePublicKey>,
-    #[prost(message, optional, tag="8")]
+    #[prost(message, optional, tag = "8")]
     pub queued_pub_key: ::core::option::Option<super::common::QueuedPublicKey>,
-    #[prost(uint64, tag="9")]
+    #[prost(uint64, tag = "9")]
     pub request_count: u64,
-    #[prost(message, repeated, tag="10")]
+    #[prost(message, repeated, tag = "10")]
     pub request_id_list: ::prost::alloc::vec::Vec<RequestId>,
 }
 /// QueryParamsRequest is request type for the Query/Params RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryParamsRequest {
-}
+pub struct QueryParamsRequest {}
 /// QueryParamsResponse is response type for the Query/Params RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryParamsResponse {
     /// params holds all the parameters of this module.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub params: ::core::option::Option<Params>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryKeyshareRequest {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub req_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryKeyshareResponse {
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub keyshare: ::core::option::Option<GenEncTxExecutionQueue>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryAllKeyshareRequest {
-    #[prost(message, optional, tag="1")]
-    pub pagination: ::core::option::Option<cosmos_sdk_proto::cosmos::base::query::v1beta1::PageRequest>,
+    #[prost(message, optional, tag = "1")]
+    pub pagination:
+        ::core::option::Option<cosmos_sdk_proto::cosmos::base::query::v1beta1::PageRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryAllKeyshareResponse {
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub keyshares: ::prost::alloc::vec::Vec<GenEncTxExecutionQueue>,
-    #[prost(message, optional, tag="2")]
-    pub pagination: ::core::option::Option<cosmos_sdk_proto::cosmos::base::query::v1beta1::PageResponse>,
+    #[prost(message, optional, tag = "2")]
+    pub pagination:
+        ::core::option::Option<cosmos_sdk_proto::cosmos::base::query::v1beta1::PageResponse>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryGetEncryptedTxRequest {
-    #[prost(uint64, tag="1")]
+    #[prost(uint64, tag = "1")]
     pub target_height: u64,
-    #[prost(uint64, tag="2")]
+    #[prost(uint64, tag = "2")]
     pub index: u64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryGetEncryptedTxResponse {
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub encrypted_tx: ::core::option::Option<EncryptedTx>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryAllEncryptedTxRequest {
-    #[prost(message, optional, tag="1")]
-    pub pagination: ::core::option::Option<cosmos_sdk_proto::cosmos::base::query::v1beta1::PageRequest>,
+    #[prost(message, optional, tag = "1")]
+    pub pagination:
+        ::core::option::Option<cosmos_sdk_proto::cosmos::base::query::v1beta1::PageRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryAllEncryptedTxResponse {
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub encrypted_tx_array: ::prost::alloc::vec::Vec<EncryptedTxArray>,
-    #[prost(message, optional, tag="2")]
-    pub pagination: ::core::option::Option<cosmos_sdk_proto::cosmos::base::query::v1beta1::PageResponse>,
+    #[prost(message, optional, tag = "2")]
+    pub pagination:
+        ::core::option::Option<cosmos_sdk_proto::cosmos::base::query::v1beta1::PageResponse>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryAllEncryptedTxFromHeightRequest {
-    #[prost(uint64, tag="1")]
+    #[prost(uint64, tag = "1")]
     pub target_height: u64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryAllEncryptedTxFromHeightResponse {
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub encrypted_tx_array: ::core::option::Option<EncryptedTxArray>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryLatestHeightRequest {
-}
+pub struct QueryLatestHeightRequest {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryLatestHeightResponse {
-    #[prost(uint64, tag="1")]
+    #[prost(uint64, tag = "1")]
     pub height: u64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryGetPepNonceRequest {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub address: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryGetPepNonceResponse {
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub pep_nonce: ::core::option::Option<PepNonce>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryAllPepNonceRequest {
-    #[prost(message, optional, tag="1")]
-    pub pagination: ::core::option::Option<cosmos_sdk_proto::cosmos::base::query::v1beta1::PageRequest>,
+    #[prost(message, optional, tag = "1")]
+    pub pagination:
+        ::core::option::Option<cosmos_sdk_proto::cosmos::base::query::v1beta1::PageRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryAllPepNonceResponse {
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub pep_nonce: ::prost::alloc::vec::Vec<PepNonce>,
-    #[prost(message, optional, tag="2")]
-    pub pagination: ::core::option::Option<cosmos_sdk_proto::cosmos::base::query::v1beta1::PageResponse>,
+    #[prost(message, optional, tag = "2")]
+    pub pagination:
+        ::core::option::Option<cosmos_sdk_proto::cosmos::base::query::v1beta1::PageResponse>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryPubKeyRequest {
-}
+pub struct QueryPubKeyRequest {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryPubKeyResponse {
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub active_pub_key: ::core::option::Option<super::common::ActivePublicKey>,
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub queued_pub_key: ::core::option::Option<super::common::QueuedPublicKey>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryShowPrivateKeyshareReqRequest {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub req_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryShowPrivateKeyshareReqResponse {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub creator: ::prost::alloc::string::String,
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub req_id: ::prost::alloc::string::String,
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub pubkey: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag="5")]
+    #[prost(message, repeated, tag = "5")]
     pub encrypted_keyshares: ::prost::alloc::vec::Vec<super::common::EncryptedKeyshare>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryDecryptDataRequest {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub pubkey: ::prost::alloc::string::String,
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub aggr_keyshare: ::prost::alloc::string::String,
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub encrypted_data: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryDecryptDataResponse {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub decrypted_data: ::prost::alloc::string::String,
 }
 /// MsgUpdateParams is the Msg/UpdateParams request type.
@@ -341,128 +345,123 @@ pub struct QueryDecryptDataResponse {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgUpdateParams {
     /// authority is the address that controls the module (defaults to x/gov unless overwritten).
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub authority: ::prost::alloc::string::String,
     // params defines the module parameters to update.
-
     /// NOTE: All parameters must be supplied.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub params: ::core::option::Option<Params>,
 }
 /// MsgUpdateParamsResponse defines the response structure for executing a
 /// MsgUpdateParams message.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgUpdateParamsResponse {
-}
+pub struct MsgUpdateParamsResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgSubmitEncryptedTx {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub creator: ::prost::alloc::string::String,
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub data: ::prost::alloc::string::String,
-    #[prost(uint64, tag="3")]
+    #[prost(uint64, tag = "3")]
     pub target_block_height: u64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgSubmitGeneralEncryptedTx {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub creator: ::prost::alloc::string::String,
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub data: ::prost::alloc::string::String,
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub req_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgSubmitEncryptedTxResponse {
-}
+pub struct MsgSubmitEncryptedTxResponse {}
 /// this line is used by starport scaffolding # proto/tx/message
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgCreateAggregatedKeyShare {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub creator: ::prost::alloc::string::String,
-    #[prost(uint64, tag="2")]
+    #[prost(uint64, tag = "2")]
     pub height: u64,
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub data: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgCreateAggregatedKeyShareResponse {
-}
+pub struct MsgCreateAggregatedKeyShareResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgRequestGeneralKeyshare {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub creator: ::prost::alloc::string::String,
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub estimated_delay: ::core::option::Option<::prost_types::Duration>,
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub req_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgRequestGeneralKeyshareResponse {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub req_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgGetGeneralKeyshare {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub creator: ::prost::alloc::string::String,
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub req_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgGetGeneralKeyshareResponse {
-}
+pub struct MsgGetGeneralKeyshareResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgRequestPrivateIdentity {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub creator: ::prost::alloc::string::String,
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub req_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgRequestPrivateIdentityResponse {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub req_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgGetPrivateKeyshares {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub creator: ::prost::alloc::string::String,
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub req_id: ::prost::alloc::string::String,
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub secp_pubkey: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgGetPrivateKeysharesResponse {
-}
+pub struct MsgGetPrivateKeysharesResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgRegisterContract {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub creator: ::prost::alloc::string::String,
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub contract_address: ::prost::alloc::string::String,
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub identity: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgRegisterContractResponse {
-}
+pub struct MsgRegisterContractResponse {}
+#[cfg(feature = "grpc")]
 include!("fairyring.pep.tonic.rs");
 // @@protoc_insertion_point(module)
+
