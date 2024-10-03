@@ -704,5 +704,30 @@ pub mod msg_client {
                 .insert(GrpcMethod::new("fairyring.pep.Msg", "RegisterContract"));
             self.inner.unary(req, path, codec).await
         }
+        pub async fn unregister_contract(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgUnregisterContract>,
+        ) -> std::result::Result<
+            tonic::Response<super::MsgUnregisterContractResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/fairyring.pep.Msg/UnregisterContract",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("fairyring.pep.Msg", "UnregisterContract"));
+            self.inner.unary(req, path, codec).await
+        }
     }
 }
