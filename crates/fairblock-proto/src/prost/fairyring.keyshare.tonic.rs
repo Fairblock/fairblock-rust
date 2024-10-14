@@ -2,8 +2,8 @@
 /// Generated client implementations.
 pub mod query_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     #[derive(Debug, Clone)]
     pub struct QueryClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -47,9 +47,8 @@ pub mod query_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             QueryClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -87,23 +86,16 @@ pub mod query_client {
         pub async fn params(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryParamsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryParamsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> std::result::Result<tonic::Response<super::QueryParamsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.keyshare.Query/Params",
-            );
+            let path = http::uri::PathAndQuery::from_static("/fairyring.keyshare.Query/Params");
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("fairyring.keyshare.Query", "Params"));
@@ -112,23 +104,17 @@ pub mod query_client {
         pub async fn commitments(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryCommitmentsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryCommitmentsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> std::result::Result<tonic::Response<super::QueryCommitmentsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.keyshare.Query/Commitments",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/fairyring.keyshare.Query/Commitments");
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("fairyring.keyshare.Query", "Commitments"));
@@ -136,24 +122,18 @@ pub mod query_client {
         }
         pub async fn validator_set(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryGetValidatorSetRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryGetValidatorSetResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            request: impl tonic::IntoRequest<super::QueryValidatorSetRequest>,
+        ) -> std::result::Result<tonic::Response<super::QueryValidatorSetResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.keyshare.Query/ValidatorSet",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/fairyring.keyshare.Query/ValidatorSet");
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("fairyring.keyshare.Query", "ValidatorSet"));
@@ -161,49 +141,38 @@ pub mod query_client {
         }
         pub async fn validator_set_all(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryAllValidatorSetRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryAllValidatorSetResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            request: impl tonic::IntoRequest<super::QueryValidatorSetAllRequest>,
+        ) -> std::result::Result<tonic::Response<super::QueryValidatorSetAllResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.keyshare.Query/ValidatorSetAll",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/fairyring.keyshare.Query/ValidatorSetAll");
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("fairyring.keyshare.Query", "ValidatorSetAll"));
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fairyring.keyshare.Query",
+                "ValidatorSetAll",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn key_share(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryGetKeyShareRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryGetKeyShareResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            request: impl tonic::IntoRequest<super::QueryKeyShareRequest>,
+        ) -> std::result::Result<tonic::Response<super::QueryKeyShareResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.keyshare.Query/KeyShare",
-            );
+            let path = http::uri::PathAndQuery::from_static("/fairyring.keyshare.Query/KeyShare");
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("fairyring.keyshare.Query", "KeyShare"));
@@ -211,24 +180,18 @@ pub mod query_client {
         }
         pub async fn key_share_all(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryAllKeyShareRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryAllKeyShareResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            request: impl tonic::IntoRequest<super::QueryKeyShareAllRequest>,
+        ) -> std::result::Result<tonic::Response<super::QueryKeyShareAllResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.keyshare.Query/KeyShareAll",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/fairyring.keyshare.Query/KeyShareAll");
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("fairyring.keyshare.Query", "KeyShareAll"));
@@ -236,78 +199,65 @@ pub mod query_client {
         }
         pub async fn aggregated_key_share(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryGetAggregatedKeyShareRequest>,
+            request: impl tonic::IntoRequest<super::QueryAggregatedKeyShareRequest>,
         ) -> std::result::Result<
-            tonic::Response<super::QueryGetAggregatedKeyShareResponse>,
+            tonic::Response<super::QueryAggregatedKeyShareResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/fairyring.keyshare.Query/AggregatedKeyShare",
             );
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("fairyring.keyshare.Query", "AggregatedKeyShare"),
-                );
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fairyring.keyshare.Query",
+                "AggregatedKeyShare",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn aggregated_key_share_all(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryAllAggregatedKeyShareRequest>,
+            request: impl tonic::IntoRequest<super::QueryAggregatedKeyShareAllRequest>,
         ) -> std::result::Result<
-            tonic::Response<super::QueryAllAggregatedKeyShareResponse>,
+            tonic::Response<super::QueryAggregatedKeyShareAllResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/fairyring.keyshare.Query/AggregatedKeyShareAll",
             );
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("fairyring.keyshare.Query", "AggregatedKeyShareAll"),
-                );
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fairyring.keyshare.Query",
+                "AggregatedKeyShareAll",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn pub_key(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryPubKeyRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryPubKeyResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> std::result::Result<tonic::Response<super::QueryPubKeyResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.keyshare.Query/PubKey",
-            );
+            let path = http::uri::PathAndQuery::from_static("/fairyring.keyshare.Query/PubKey");
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("fairyring.keyshare.Query", "PubKey"));
@@ -315,135 +265,118 @@ pub mod query_client {
         }
         pub async fn authorized_address(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryGetAuthorizedAddressRequest>,
+            request: impl tonic::IntoRequest<super::QueryAuthorizedAddressRequest>,
         ) -> std::result::Result<
-            tonic::Response<super::QueryGetAuthorizedAddressResponse>,
+            tonic::Response<super::QueryAuthorizedAddressResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.keyshare.Query/AuthorizedAddress",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/fairyring.keyshare.Query/AuthorizedAddress");
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("fairyring.keyshare.Query", "AuthorizedAddress"),
-                );
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fairyring.keyshare.Query",
+                "AuthorizedAddress",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn authorized_address_all(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryAllAuthorizedAddressRequest>,
+            request: impl tonic::IntoRequest<super::QueryAuthorizedAddressAllRequest>,
         ) -> std::result::Result<
-            tonic::Response<super::QueryAllAuthorizedAddressResponse>,
+            tonic::Response<super::QueryAuthorizedAddressAllResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/fairyring.keyshare.Query/AuthorizedAddressAll",
             );
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("fairyring.keyshare.Query", "AuthorizedAddressAll"),
-                );
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fairyring.keyshare.Query",
+                "AuthorizedAddressAll",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn general_key_share(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryGetGeneralKeyShareRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryGetGeneralKeyShareResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            request: impl tonic::IntoRequest<super::QueryGeneralKeyShareRequest>,
+        ) -> std::result::Result<tonic::Response<super::QueryGeneralKeyShareResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.keyshare.Query/GeneralKeyShare",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/fairyring.keyshare.Query/GeneralKeyShare");
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("fairyring.keyshare.Query", "GeneralKeyShare"));
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fairyring.keyshare.Query",
+                "GeneralKeyShare",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn general_key_share_all(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryAllGeneralKeyShareRequest>,
+            request: impl tonic::IntoRequest<super::QueryGeneralKeyShareAllRequest>,
         ) -> std::result::Result<
-            tonic::Response<super::QueryAllGeneralKeyShareResponse>,
+            tonic::Response<super::QueryGeneralKeyShareAllResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/fairyring.keyshare.Query/GeneralKeyShareAll",
             );
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("fairyring.keyshare.Query", "GeneralKeyShareAll"),
-                );
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fairyring.keyshare.Query",
+                "GeneralKeyShareAll",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn verifiable_randomness(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryVerifiableRandomnessQuery>,
+            request: impl tonic::IntoRequest<super::QueryVerifiableRandomnessRequest>,
         ) -> std::result::Result<
             tonic::Response<super::QueryVerifiableRandomnessResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/fairyring.keyshare.Query/VerifiableRandomness",
             );
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("fairyring.keyshare.Query", "VerifiableRandomness"),
-                );
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fairyring.keyshare.Query",
+                "VerifiableRandomness",
+            ));
             self.inner.unary(req, path, codec).await
         }
     }
@@ -451,8 +384,8 @@ pub mod query_client {
 /// Generated client implementations.
 pub mod msg_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     #[derive(Debug, Clone)]
     pub struct MsgClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -483,10 +416,7 @@ pub mod msg_client {
             let inner = tonic::client::Grpc::with_origin(inner, origin);
             Self { inner }
         }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> MsgClient<InterceptedService<T, F>>
+        pub fn with_interceptor<F>(inner: T, interceptor: F) -> MsgClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
@@ -496,9 +426,8 @@ pub mod msg_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             MsgClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -536,23 +465,16 @@ pub mod msg_client {
         pub async fn update_params(
             &mut self,
             request: impl tonic::IntoRequest<super::MsgUpdateParams>,
-        ) -> std::result::Result<
-            tonic::Response<super::MsgUpdateParamsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> std::result::Result<tonic::Response<super::MsgUpdateParamsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.keyshare.Msg/UpdateParams",
-            );
+            let path = http::uri::PathAndQuery::from_static("/fairyring.keyshare.Msg/UpdateParams");
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("fairyring.keyshare.Msg", "UpdateParams"));
@@ -561,26 +483,22 @@ pub mod msg_client {
         pub async fn register_validator(
             &mut self,
             request: impl tonic::IntoRequest<super::MsgRegisterValidator>,
-        ) -> std::result::Result<
-            tonic::Response<super::MsgRegisterValidatorResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> std::result::Result<tonic::Response<super::MsgRegisterValidatorResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.keyshare.Msg/RegisterValidator",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/fairyring.keyshare.Msg/RegisterValidator");
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("fairyring.keyshare.Msg", "RegisterValidator"));
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fairyring.keyshare.Msg",
+                "RegisterValidator",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn de_register_validator(
@@ -590,46 +508,35 @@ pub mod msg_client {
             tonic::Response<super::MsgDeRegisterValidatorResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.keyshare.Msg/DeRegisterValidator",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/fairyring.keyshare.Msg/DeRegisterValidator");
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("fairyring.keyshare.Msg", "DeRegisterValidator"),
-                );
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fairyring.keyshare.Msg",
+                "DeRegisterValidator",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn send_keyshare(
             &mut self,
             request: impl tonic::IntoRequest<super::MsgSendKeyshare>,
-        ) -> std::result::Result<
-            tonic::Response<super::MsgSendKeyshareResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> std::result::Result<tonic::Response<super::MsgSendKeyshareResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.keyshare.Msg/SendKeyshare",
-            );
+            let path = http::uri::PathAndQuery::from_static("/fairyring.keyshare.Msg/SendKeyshare");
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("fairyring.keyshare.Msg", "SendKeyshare"));
@@ -638,26 +545,22 @@ pub mod msg_client {
         pub async fn create_latest_pub_key(
             &mut self,
             request: impl tonic::IntoRequest<super::MsgCreateLatestPubKey>,
-        ) -> std::result::Result<
-            tonic::Response<super::MsgCreateLatestPubKeyResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> std::result::Result<tonic::Response<super::MsgCreateLatestPubKeyResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.keyshare.Msg/CreateLatestPubKey",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/fairyring.keyshare.Msg/CreateLatestPubKey");
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("fairyring.keyshare.Msg", "CreateLatestPubKey"));
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fairyring.keyshare.Msg",
+                "CreateLatestPubKey",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn override_latest_pub_key(
@@ -667,24 +570,21 @@ pub mod msg_client {
             tonic::Response<super::MsgOverrideLatestPubKeyResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/fairyring.keyshare.Msg/OverrideLatestPubKey",
             );
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("fairyring.keyshare.Msg", "OverrideLatestPubKey"),
-                );
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fairyring.keyshare.Msg",
+                "OverrideLatestPubKey",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn create_authorized_address(
@@ -694,24 +594,21 @@ pub mod msg_client {
             tonic::Response<super::MsgCreateAuthorizedAddressResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/fairyring.keyshare.Msg/CreateAuthorizedAddress",
             );
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("fairyring.keyshare.Msg", "CreateAuthorizedAddress"),
-                );
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fairyring.keyshare.Msg",
+                "CreateAuthorizedAddress",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn update_authorized_address(
@@ -721,24 +618,21 @@ pub mod msg_client {
             tonic::Response<super::MsgUpdateAuthorizedAddressResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/fairyring.keyshare.Msg/UpdateAuthorizedAddress",
             );
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("fairyring.keyshare.Msg", "UpdateAuthorizedAddress"),
-                );
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fairyring.keyshare.Msg",
+                "UpdateAuthorizedAddress",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn delete_authorized_address(
@@ -748,24 +642,21 @@ pub mod msg_client {
             tonic::Response<super::MsgDeleteAuthorizedAddressResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/fairyring.keyshare.Msg/DeleteAuthorizedAddress",
             );
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("fairyring.keyshare.Msg", "DeleteAuthorizedAddress"),
-                );
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fairyring.keyshare.Msg",
+                "DeleteAuthorizedAddress",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn create_general_key_share(
@@ -775,24 +666,21 @@ pub mod msg_client {
             tonic::Response<super::MsgCreateGeneralKeyShareResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/fairyring.keyshare.Msg/CreateGeneralKeyShare",
             );
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("fairyring.keyshare.Msg", "CreateGeneralKeyShare"),
-                );
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fairyring.keyshare.Msg",
+                "CreateGeneralKeyShare",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn submit_encrypted_keyshare(
@@ -802,24 +690,21 @@ pub mod msg_client {
             tonic::Response<super::MsgSubmitEncryptedKeyshareResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/fairyring.keyshare.Msg/SubmitEncryptedKeyshare",
             );
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("fairyring.keyshare.Msg", "SubmitEncryptedKeyshare"),
-                );
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fairyring.keyshare.Msg",
+                "SubmitEncryptedKeyshare",
+            ));
             self.inner.unary(req, path, codec).await
         }
     }

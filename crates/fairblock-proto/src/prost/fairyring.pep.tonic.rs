@@ -2,8 +2,8 @@
 /// Generated client implementations.
 pub mod query_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     #[derive(Debug, Clone)]
     pub struct QueryClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -47,9 +47,8 @@ pub mod query_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             QueryClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -87,23 +86,16 @@ pub mod query_client {
         pub async fn params(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryParamsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryParamsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> std::result::Result<tonic::Response<super::QueryParamsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.pep.Query/Params",
-            );
+            let path = http::uri::PathAndQuery::from_static("/fairyring.pep.Query/Params");
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("fairyring.pep.Query", "Params"));
@@ -111,24 +103,17 @@ pub mod query_client {
         }
         pub async fn encrypted_tx(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryGetEncryptedTxRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryGetEncryptedTxResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            request: impl tonic::IntoRequest<super::QueryEncryptedTxRequest>,
+        ) -> std::result::Result<tonic::Response<super::QueryEncryptedTxResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.pep.Query/EncryptedTx",
-            );
+            let path = http::uri::PathAndQuery::from_static("/fairyring.pep.Query/EncryptedTx");
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("fairyring.pep.Query", "EncryptedTx"));
@@ -136,24 +121,17 @@ pub mod query_client {
         }
         pub async fn encrypted_tx_all(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryAllEncryptedTxRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryAllEncryptedTxResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            request: impl tonic::IntoRequest<super::QueryEncryptedTxAllRequest>,
+        ) -> std::result::Result<tonic::Response<super::QueryEncryptedTxAllResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.pep.Query/EncryptedTxAll",
-            );
+            let path = http::uri::PathAndQuery::from_static("/fairyring.pep.Query/EncryptedTxAll");
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("fairyring.pep.Query", "EncryptedTxAll"));
@@ -161,51 +139,41 @@ pub mod query_client {
         }
         pub async fn encrypted_tx_all_from_height(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryAllEncryptedTxFromHeightRequest>,
+            request: impl tonic::IntoRequest<super::QueryEncryptedTxAllFromHeightRequest>,
         ) -> std::result::Result<
-            tonic::Response<super::QueryAllEncryptedTxFromHeightResponse>,
+            tonic::Response<super::QueryEncryptedTxAllFromHeightResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/fairyring.pep.Query/EncryptedTxAllFromHeight",
             );
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("fairyring.pep.Query", "EncryptedTxAllFromHeight"),
-                );
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fairyring.pep.Query",
+                "EncryptedTxAllFromHeight",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn latest_height(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryLatestHeightRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryLatestHeightResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> std::result::Result<tonic::Response<super::QueryLatestHeightResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.pep.Query/LatestHeight",
-            );
+            let path = http::uri::PathAndQuery::from_static("/fairyring.pep.Query/LatestHeight");
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("fairyring.pep.Query", "LatestHeight"));
@@ -213,24 +181,17 @@ pub mod query_client {
         }
         pub async fn pep_nonce(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryGetPepNonceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryGetPepNonceResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            request: impl tonic::IntoRequest<super::QueryPepNonceRequest>,
+        ) -> std::result::Result<tonic::Response<super::QueryPepNonceResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.pep.Query/PepNonce",
-            );
+            let path = http::uri::PathAndQuery::from_static("/fairyring.pep.Query/PepNonce");
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("fairyring.pep.Query", "PepNonce"));
@@ -238,24 +199,17 @@ pub mod query_client {
         }
         pub async fn pep_nonce_all(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryAllPepNonceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryAllPepNonceResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            request: impl tonic::IntoRequest<super::QueryPepNonceAllRequest>,
+        ) -> std::result::Result<tonic::Response<super::QueryPepNonceAllResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.pep.Query/PepNonceAll",
-            );
+            let path = http::uri::PathAndQuery::from_static("/fairyring.pep.Query/PepNonceAll");
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("fairyring.pep.Query", "PepNonceAll"));
@@ -264,23 +218,16 @@ pub mod query_client {
         pub async fn pub_key(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryPubKeyRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryPubKeyResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> std::result::Result<tonic::Response<super::QueryPubKeyResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.pep.Query/PubKey",
-            );
+            let path = http::uri::PathAndQuery::from_static("/fairyring.pep.Query/PubKey");
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("fairyring.pep.Query", "PubKey"));
@@ -288,24 +235,17 @@ pub mod query_client {
         }
         pub async fn keyshare_req(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryKeyshareRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryKeyshareResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            request: impl tonic::IntoRequest<super::QueryKeyshareReqRequest>,
+        ) -> std::result::Result<tonic::Response<super::QueryKeyshareReqResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.pep.Query/KeyshareReq",
-            );
+            let path = http::uri::PathAndQuery::from_static("/fairyring.pep.Query/KeyshareReq");
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("fairyring.pep.Query", "KeyshareReq"));
@@ -313,76 +253,56 @@ pub mod query_client {
         }
         pub async fn keyshare_req_all(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryAllKeyshareRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryAllKeyshareResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            request: impl tonic::IntoRequest<super::QueryKeyshareReqAllRequest>,
+        ) -> std::result::Result<tonic::Response<super::QueryKeyshareReqAllResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.pep.Query/KeyshareReqAll",
-            );
+            let path = http::uri::PathAndQuery::from_static("/fairyring.pep.Query/KeyshareReqAll");
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("fairyring.pep.Query", "KeyshareReqAll"));
             self.inner.unary(req, path, codec).await
         }
-        pub async fn show_private_keyshare_req(
+        pub async fn private_keyshare_req(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryShowPrivateKeyshareReqRequest>,
+            request: impl tonic::IntoRequest<super::QueryPrivateKeyshareReqRequest>,
         ) -> std::result::Result<
-            tonic::Response<super::QueryShowPrivateKeyshareReqResponse>,
+            tonic::Response<super::QueryPrivateKeyshareReqResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.pep.Query/ShowPrivateKeyshareReq",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/fairyring.pep.Query/PrivateKeyshareReq");
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("fairyring.pep.Query", "ShowPrivateKeyshareReq"),
-                );
+                .insert(GrpcMethod::new("fairyring.pep.Query", "PrivateKeyshareReq"));
             self.inner.unary(req, path, codec).await
         }
         pub async fn decrypt_data(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryDecryptDataRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryDecryptDataResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> std::result::Result<tonic::Response<super::QueryDecryptDataResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.pep.Query/DecryptData",
-            );
+            let path = http::uri::PathAndQuery::from_static("/fairyring.pep.Query/DecryptData");
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("fairyring.pep.Query", "DecryptData"));
@@ -393,8 +313,8 @@ pub mod query_client {
 /// Generated client implementations.
 pub mod msg_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     #[derive(Debug, Clone)]
     pub struct MsgClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -425,10 +345,7 @@ pub mod msg_client {
             let inner = tonic::client::Grpc::with_origin(inner, origin);
             Self { inner }
         }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> MsgClient<InterceptedService<T, F>>
+        pub fn with_interceptor<F>(inner: T, interceptor: F) -> MsgClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
@@ -438,9 +355,8 @@ pub mod msg_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             MsgClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -478,23 +394,16 @@ pub mod msg_client {
         pub async fn update_params(
             &mut self,
             request: impl tonic::IntoRequest<super::MsgUpdateParams>,
-        ) -> std::result::Result<
-            tonic::Response<super::MsgUpdateParamsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> std::result::Result<tonic::Response<super::MsgUpdateParamsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.pep.Msg/UpdateParams",
-            );
+            let path = http::uri::PathAndQuery::from_static("/fairyring.pep.Msg/UpdateParams");
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("fairyring.pep.Msg", "UpdateParams"));
@@ -503,23 +412,16 @@ pub mod msg_client {
         pub async fn submit_encrypted_tx(
             &mut self,
             request: impl tonic::IntoRequest<super::MsgSubmitEncryptedTx>,
-        ) -> std::result::Result<
-            tonic::Response<super::MsgSubmitEncryptedTxResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> std::result::Result<tonic::Response<super::MsgSubmitEncryptedTxResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.pep.Msg/SubmitEncryptedTx",
-            );
+            let path = http::uri::PathAndQuery::from_static("/fairyring.pep.Msg/SubmitEncryptedTx");
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("fairyring.pep.Msg", "SubmitEncryptedTx"));
@@ -529,27 +431,23 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgSubmitGeneralEncryptedTx>,
         ) -> std::result::Result<
-            tonic::Response<super::MsgSubmitEncryptedTxResponse>,
+            tonic::Response<super::MsgSubmitGeneralEncryptedTxResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.pep.Msg/SubmitGeneralEncryptedTx",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/fairyring.pep.Msg/SubmitGeneralEncryptedTx");
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("fairyring.pep.Msg", "SubmitGeneralEncryptedTx"),
-                );
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fairyring.pep.Msg",
+                "SubmitGeneralEncryptedTx",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn create_aggregated_key_share(
@@ -559,24 +457,20 @@ pub mod msg_client {
             tonic::Response<super::MsgCreateAggregatedKeyShareResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.pep.Msg/CreateAggregatedKeyShare",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/fairyring.pep.Msg/CreateAggregatedKeyShare");
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("fairyring.pep.Msg", "CreateAggregatedKeyShare"),
-                );
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fairyring.pep.Msg",
+                "CreateAggregatedKeyShare",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn request_general_keyshare(
@@ -586,44 +480,36 @@ pub mod msg_client {
             tonic::Response<super::MsgRequestGeneralKeyshareResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.pep.Msg/RequestGeneralKeyshare",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/fairyring.pep.Msg/RequestGeneralKeyshare");
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("fairyring.pep.Msg", "RequestGeneralKeyshare"));
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fairyring.pep.Msg",
+                "RequestGeneralKeyshare",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn get_general_keyshare(
             &mut self,
             request: impl tonic::IntoRequest<super::MsgGetGeneralKeyshare>,
-        ) -> std::result::Result<
-            tonic::Response<super::MsgGetGeneralKeyshareResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> std::result::Result<tonic::Response<super::MsgGetGeneralKeyshareResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.pep.Msg/GetGeneralKeyshare",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/fairyring.pep.Msg/GetGeneralKeyshare");
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("fairyring.pep.Msg", "GetGeneralKeyshare"));
@@ -636,22 +522,20 @@ pub mod msg_client {
             tonic::Response<super::MsgRequestPrivateIdentityResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.pep.Msg/RequestPrivateIdentity",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/fairyring.pep.Msg/RequestPrivateIdentity");
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("fairyring.pep.Msg", "RequestPrivateIdentity"));
+            req.extensions_mut().insert(GrpcMethod::new(
+                "fairyring.pep.Msg",
+                "RequestPrivateIdentity",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn get_private_keyshares(
@@ -661,19 +545,15 @@ pub mod msg_client {
             tonic::Response<super::MsgGetPrivateKeysharesResponse>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.pep.Msg/GetPrivateKeyshares",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/fairyring.pep.Msg/GetPrivateKeyshares");
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("fairyring.pep.Msg", "GetPrivateKeyshares"));
@@ -682,26 +562,38 @@ pub mod msg_client {
         pub async fn register_contract(
             &mut self,
             request: impl tonic::IntoRequest<super::MsgRegisterContract>,
-        ) -> std::result::Result<
-            tonic::Response<super::MsgRegisterContractResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> std::result::Result<tonic::Response<super::MsgRegisterContractResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.pep.Msg/RegisterContract",
-            );
+            let path = http::uri::PathAndQuery::from_static("/fairyring.pep.Msg/RegisterContract");
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("fairyring.pep.Msg", "RegisterContract"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn unregister_contract(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgUnregisterContract>,
+        ) -> std::result::Result<tonic::Response<super::MsgUnregisterContractResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/fairyring.pep.Msg/UnregisterContract");
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("fairyring.pep.Msg", "UnregisterContract"));
             self.inner.unary(req, path, codec).await
         }
     }

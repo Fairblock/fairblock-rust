@@ -7,11 +7,13 @@ pub struct RequestAggrKeyshare {
     pub creator: ::prost::alloc::string::String,
     #[prost(message, optional, tag="4")]
     pub estimated_delay: ::core::option::Option<::prost_types::Duration>,
+    /// id can either be a rwquest id or a proposal id
     #[prost(oneof="request_aggr_keyshare::Id", tags="2, 3")]
     pub id: ::core::option::Option<request_aggr_keyshare::Id>,
 }
 /// Nested message and enum types in `RequestAggrKeyshare`.
 pub mod request_aggr_keyshare {
+    /// id can either be a rwquest id or a proposal id
     #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Id {
@@ -21,6 +23,7 @@ pub mod request_aggr_keyshare {
         RequestId(::prost::alloc::string::String),
     }
 }
+/// RequestAggrKeyshareResponse defines the response to the RequestAggrKeyshare message
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RequestAggrKeyshareResponse {
@@ -35,11 +38,13 @@ pub struct RequestAggrKeyshareResponse {
 pub struct GetAggrKeyshare {
     #[prost(string, tag="3")]
     pub identity: ::prost::alloc::string::String,
+    /// id can either be a rwquest id or a proposal id
     #[prost(oneof="get_aggr_keyshare::Id", tags="1, 2")]
     pub id: ::core::option::Option<get_aggr_keyshare::Id>,
 }
 /// Nested message and enum types in `GetAggrKeyshare`.
 pub mod get_aggr_keyshare {
+    /// id can either be a rwquest id or a proposal id
     #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Id {
@@ -49,6 +54,7 @@ pub mod get_aggr_keyshare {
         RequestId(::prost::alloc::string::String),
     }
 }
+/// GetAggrKeyshareResponse defines the response to the GetAggrKeyshare message
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAggrKeyshareResponse {
@@ -66,12 +72,14 @@ pub struct GetPrivateKeyshare {
     #[prost(string, tag="4")]
     pub secp_pubkey: ::prost::alloc::string::String,
 }
+/// GetPrivateKeyshareResponse defines the response to the GetPrivateKeyshare message
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetPrivateKeyshareResponse {
     #[prost(string, tag="1")]
     pub pubkey: ::prost::alloc::string::String,
 }
+/// ActivePublicKey defines the pubkey currently in use
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ActivePublicKey {
@@ -82,6 +90,8 @@ pub struct ActivePublicKey {
     #[prost(uint64, tag="3")]
     pub expiry: u64,
 }
+/// QueuedPublicKey defines the pubkey that (when set) will replace the acive pubkey
+/// when it expires
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueuedPublicKey {
@@ -92,14 +102,18 @@ pub struct QueuedPublicKey {
     #[prost(uint64, tag="3")]
     pub expiry: u64,
 }
+/// RequestEncryptedKeyshare defines the structure to request for
+/// encrypted and unaggregated keyshares
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RequestPrivateKeyshare {
+pub struct RequestEncryptedKeyshare {
     #[prost(string, tag="1")]
     pub creator: ::prost::alloc::string::String,
     #[prost(string, tag="2")]
     pub request_id: ::prost::alloc::string::String,
 }
+/// EncryptedKeyshare defines the storage structure for
+/// the list of encrypted keyshares (unaggregated)
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EncryptedKeyshare {
@@ -108,6 +122,8 @@ pub struct EncryptedKeyshare {
     #[prost(message, repeated, tag="2")]
     pub private_keyshares: ::prost::alloc::vec::Vec<IndexedEncryptedKeyshare>,
 }
+/// IndexedEncryptedKeyshare defines the storage of submitted encrypted
+/// keyshares along with their indices (can be decrypted and aggregated)
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct IndexedEncryptedKeyshare {

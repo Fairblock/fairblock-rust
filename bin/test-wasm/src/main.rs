@@ -1,6 +1,6 @@
-use fairblock_proto::fairyring::keyshare::QueryVerifiableRandomnessQuery;
+use fairblock_proto::fairyring::keyshare::QueryVerifiableRandomnessRequest;
 
 fn main() {
-    let request = QueryVerifiableRandomnessQuery {};
+    let request = QueryVerifiableRandomnessRequest {};
     println!("{:?}", request);
 }

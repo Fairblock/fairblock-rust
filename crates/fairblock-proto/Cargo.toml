@@ -10,4 +10,5 @@ prost-types = { version = "0.13.1", default-features = false }
 tonic = { version = "0.12.1", default-features = false, features = ["codegen", "prost"] }
 
 [features]
+default = ["grpc"]
 grpc = []
