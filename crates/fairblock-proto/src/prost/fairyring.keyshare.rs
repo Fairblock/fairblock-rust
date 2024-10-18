@@ -1,14 +1,5 @@
 // @generated
-/// AggregatedKeyShare defines the structure and height for an aggregated keyshare
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AggregatedKeyShare {
-    #[prost(uint64, tag = "1")]
-    pub height: u64,
-    #[prost(string, tag = "2")]
-    pub data: ::prost::alloc::string::String,
-}
-/// AuthorizedAddress defines if an address is authorized to submit pubkeys
+/// AuthorizedAddress defines if an address is authorized to submit keyshares
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AuthorizedAddress {
@@ -27,6 +18,73 @@ pub struct Commitments {
     #[prost(string, repeated, tag = "1")]
     pub commitments: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
+/// Decryption key defines the structure and height for a decryption key
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DecryptionKey {
+    #[prost(uint64, tag = "1")]
+    pub height: u64,
+    #[prost(string, tag = "2")]
+    pub data: ::prost::alloc::string::String,
+}
+/// Keyshare defines the structure for submitting
+/// blockwise keyshares by validators
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Keyshare {
+    #[prost(string, tag = "1")]
+    pub validator: ::prost::alloc::string::String,
+    #[prost(uint64, tag = "2")]
+    pub block_height: u64,
+    #[prost(string, tag = "3")]
+    pub keyshare: ::prost::alloc::string::String,
+    #[prost(uint64, tag = "4")]
+    pub keyshare_index: u64,
+    #[prost(uint64, tag = "5")]
+    pub received_timestamp: u64,
+    #[prost(uint64, tag = "6")]
+    pub received_block_height: u64,
+}
+/// GeneralKeyshare defines the structure for submitting
+/// general keyshares by validators
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GeneralKeyshare {
+    #[prost(string, tag = "1")]
+    pub validator: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub id_type: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub id_value: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub keyshare: ::prost::alloc::string::String,
+    #[prost(uint64, tag = "5")]
+    pub keyshare_index: u64,
+    #[prost(uint64, tag = "6")]
+    pub received_timestamp: u64,
+    #[prost(uint64, tag = "7")]
+    pub received_block_height: u64,
+}
+/// ValidatorEncryptedKeyshare defines the structure for
+/// submitting encrypted keyshares by validators
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ValidatorEncryptedKeyshare {
+    #[prost(string, tag = "1")]
+    pub validator: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub requester: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub keyshare: ::prost::alloc::string::String,
+    #[prost(uint64, tag = "4")]
+    pub keyshare_index: u64,
+    #[prost(uint64, tag = "5")]
+    pub received_timestamp: u64,
+    #[prost(uint64, tag = "6")]
+    pub received_block_height: u64,
+    #[prost(string, tag = "7")]
+    pub identity: ::prost::alloc::string::String,
+}
 /// Params defines the parameters for the module.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -44,83 +102,11 @@ pub struct Params {
     #[prost(bytes = "vec", tag = "6")]
     pub slash_fraction_wrong_keyshare: ::prost::alloc::vec::Vec<u8>,
 }
-/// ValidatorSet defines the structure for storing the list of
-/// validators who will be eligible to send keyshares
+/// EncryptedKeyshare defines the structure for storing
+/// the keyshare of the master secret key distributed to the validators
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ValidatorSet {
-    #[prost(string, tag = "1")]
-    pub index: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub validator: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub cons_addr: ::prost::alloc::string::String,
-    #[prost(bool, tag = "4")]
-    pub is_active: bool,
-}
-/// KeyShare defines the structure for submitting
-/// blockwise keyshares by validators
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct KeyShare {
-    #[prost(string, tag = "1")]
-    pub validator: ::prost::alloc::string::String,
-    #[prost(uint64, tag = "2")]
-    pub block_height: u64,
-    #[prost(string, tag = "3")]
-    pub key_share: ::prost::alloc::string::String,
-    #[prost(uint64, tag = "4")]
-    pub key_share_index: u64,
-    #[prost(uint64, tag = "5")]
-    pub received_timestamp: u64,
-    #[prost(uint64, tag = "6")]
-    pub received_block_height: u64,
-}
-/// GeneralKeyShare defines the structure for submitting
-/// general keyshares by validators
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GeneralKeyShare {
-    #[prost(string, tag = "1")]
-    pub validator: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub id_type: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub id_value: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub key_share: ::prost::alloc::string::String,
-    #[prost(uint64, tag = "5")]
-    pub key_share_index: u64,
-    #[prost(uint64, tag = "6")]
-    pub received_timestamp: u64,
-    #[prost(uint64, tag = "7")]
-    pub received_block_height: u64,
-}
-/// ValidatorEncryptedKeyShare defines the structure for
-/// submitting encrypted keyshares by validators
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ValidatorEncryptedKeyShare {
-    #[prost(string, tag = "1")]
-    pub validator: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub requester: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub key_share: ::prost::alloc::string::String,
-    #[prost(uint64, tag = "4")]
-    pub key_share_index: u64,
-    #[prost(uint64, tag = "5")]
-    pub received_timestamp: u64,
-    #[prost(uint64, tag = "6")]
-    pub received_block_height: u64,
-    #[prost(string, tag = "7")]
-    pub identity: ::prost::alloc::string::String,
-}
-/// EncryptedKeyShare defines the structure for storing
-/// blockwise keyshares submitted by validators
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct EncryptedKeyShare {
+pub struct EncryptedKeyshare {
     #[prost(string, tag = "1")]
     pub data: ::prost::alloc::string::String,
     #[prost(string, tag = "2")]
@@ -139,7 +125,7 @@ pub struct ActivePubKey {
     #[prost(uint64, tag = "4")]
     pub number_of_validators: u64,
     #[prost(message, repeated, tag = "5")]
-    pub encrypted_key_shares: ::prost::alloc::vec::Vec<EncryptedKeyShare>,
+    pub encrypted_keyshares: ::prost::alloc::vec::Vec<EncryptedKeyshare>,
 }
 /// QueuedPubKey defines the structure of the queued public key
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -154,7 +140,21 @@ pub struct QueuedPubKey {
     #[prost(uint64, tag = "4")]
     pub number_of_validators: u64,
     #[prost(message, repeated, tag = "5")]
-    pub encrypted_key_shares: ::prost::alloc::vec::Vec<EncryptedKeyShare>,
+    pub encrypted_keyshares: ::prost::alloc::vec::Vec<EncryptedKeyshare>,
+}
+/// ValidatorSet defines the structure for storing the list of
+/// validators who will be eligible to send keyshares
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ValidatorSet {
+    #[prost(string, tag = "1")]
+    pub index: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub validator: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub cons_addr: ::prost::alloc::string::String,
+    #[prost(bool, tag = "4")]
+    pub is_active: bool,
 }
 /// GenesisState defines the keyshare module's genesis state.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -168,9 +168,9 @@ pub struct GenesisState {
     #[prost(message, repeated, tag = "3")]
     pub validator_set_list: ::prost::alloc::vec::Vec<ValidatorSet>,
     #[prost(message, repeated, tag = "4")]
-    pub key_share_list: ::prost::alloc::vec::Vec<KeyShare>,
+    pub keyshare_list: ::prost::alloc::vec::Vec<Keyshare>,
     #[prost(message, repeated, tag = "5")]
-    pub aggregated_key_share_list: ::prost::alloc::vec::Vec<AggregatedKeyShare>,
+    pub decryption_key_list: ::prost::alloc::vec::Vec<DecryptionKey>,
     #[prost(message, optional, tag = "6")]
     pub active_pub_key: ::core::option::Option<ActivePubKey>,
     #[prost(message, optional, tag = "7")]
@@ -180,11 +180,13 @@ pub struct GenesisState {
     #[prost(uint64, tag = "9")]
     pub request_count: u64,
     #[prost(message, repeated, tag = "10")]
-    pub general_key_share_list: ::prost::alloc::vec::Vec<GeneralKeyShare>,
+    pub general_keyshare_list: ::prost::alloc::vec::Vec<GeneralKeyshare>,
 }
+/// KeysharePacketData defines all the packet types of the keyshare module
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct KeysharePacketData {
+    /// packet can be one of the following types
     #[prost(
         oneof = "keyshare_packet_data::Packet",
         tags = "1, 2, 3, 4, 5, 6, 7, 8"
@@ -193,43 +195,47 @@ pub struct KeysharePacketData {
 }
 /// Nested message and enum types in `KeysharePacketData`.
 pub mod keyshare_packet_data {
+    /// packet can be one of the following types
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Packet {
         #[prost(message, tag = "1")]
         NoData(super::NoData),
         #[prost(message, tag = "2")]
-        RequestAggrKeysharePacket(super::RequestAggrKeysharePacketData),
+        RequestDecryptionKeyPacket(super::RequestDecryptionKeyPacketData),
         #[prost(message, tag = "3")]
-        GetAggrKeysharePacket(super::GetAggrKeysharePacketData),
+        GetDecryptionKeyPacket(super::GetDecryptionKeyPacketData),
         #[prost(message, tag = "4")]
-        AggrKeyshareDataPacket(super::AggrKeyshareDataPacketData),
+        DecryptionKeyDataPacket(super::DecryptionKeyDataPacketData),
         #[prost(message, tag = "5")]
-        EncryptedKeysharesPacketData(super::EncryptedKeysharesPacketData),
+        PrivateDecryptionKeyDataPacket(super::PrivateDecryptionKeyDataPacketData),
         #[prost(message, tag = "6")]
         CurrentKeysPacket(super::CurrentKeysPacketData),
         #[prost(message, tag = "7")]
-        RequestPrivKeysharePacket(super::RequestPrivateKeysharePacketData),
+        RequestPrivateDecryptionKeyPacket(super::RequestPrivateDecryptionKeyPacketData),
         #[prost(message, tag = "8")]
-        GetPrivateKeysharePacket(super::GetPrivateKeysharePacketData),
+        GetPrivateDecryptionKeyPacket(super::GetPrivateDecryptionKeyPacketData),
     }
 }
+/// NoData defines a blank packet
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NoData {}
-/// RequestAggrKeysharePacketData defines a struct for the packet payload
+/// RequestDecryptionKeyPacketData defines a struct for the packet payload
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RequestAggrKeysharePacketData {
+pub struct RequestDecryptionKeyPacketData {
     #[prost(string, tag = "1")]
     pub requester: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "4")]
     pub estimated_delay: ::core::option::Option<::prost_types::Duration>,
-    #[prost(oneof = "request_aggr_keyshare_packet_data::Id", tags = "2, 3")]
-    pub id: ::core::option::Option<request_aggr_keyshare_packet_data::Id>,
+    /// id can either be a request id or a proposal id
+    #[prost(oneof = "request_decryption_key_packet_data::Id", tags = "2, 3")]
+    pub id: ::core::option::Option<request_decryption_key_packet_data::Id>,
 }
-/// Nested message and enum types in `RequestAggrKeysharePacketData`.
-pub mod request_aggr_keyshare_packet_data {
+/// Nested message and enum types in `RequestDecryptionKeyPacketData`.
+pub mod request_decryption_key_packet_data {
+    /// id can either be a request id or a proposal id
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Id {
@@ -239,46 +245,48 @@ pub mod request_aggr_keyshare_packet_data {
         RequestId(::prost::alloc::string::String),
     }
 }
+/// RequestPrivateDecryptionKeyPacketData defines a struct for the packet payload
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RequestPrivateKeysharePacketData {
+pub struct RequestPrivateDecryptionKeyPacketData {
     #[prost(string, tag = "1")]
     pub requester: ::prost::alloc::string::String,
     #[prost(string, tag = "2")]
     pub request_id: ::prost::alloc::string::String,
 }
+/// RequestPrivateDecryptionKeyPacketAck defines a struct for the packet acknowledgment
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RequestPrivateKeysharePacketAck {
+pub struct RequestPrivateDecryptionKeyPacketAck {
     #[prost(string, tag = "1")]
     pub identity: ::prost::alloc::string::String,
     #[prost(string, tag = "2")]
     pub pubkey: ::prost::alloc::string::String,
 }
-/// RequestAggrKeysharePacketAck defines a struct for the packet acknowledgment
+/// RequestDecryptionKeyPacketAck defines a struct for the packet acknowledgment
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RequestAggrKeysharePacketAck {
+pub struct RequestDecryptionKeyPacketAck {
     #[prost(string, tag = "1")]
     pub identity: ::prost::alloc::string::String,
     #[prost(string, tag = "2")]
     pub pubkey: ::prost::alloc::string::String,
 }
-/// GetAggrKeysharePacketData defines a struct for the packet payload
+/// GetDecryptionKeyPacketData defines a struct for the packet payload
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GetAggrKeysharePacketData {
+pub struct GetDecryptionKeyPacketData {
     #[prost(string, tag = "1")]
     pub identity: ::prost::alloc::string::String,
 }
-/// GetAggrKeysharePacketAck defines a struct for the packet acknowledgment
+/// GetDecryptionKeyPacketAck defines a struct for the packet acknowledgment
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GetAggrKeysharePacketAck {}
-/// GetPrivateKeysharePacketData defines a struct for the packet payload
+pub struct GetDecryptionKeyPacketAck {}
+/// GetPrivateDecryptionKeyPacketData defines a struct for the packet payload
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GetPrivateKeysharePacketData {
+pub struct GetPrivateDecryptionKeyPacketData {
     #[prost(string, tag = "1")]
     pub identity: ::prost::alloc::string::String,
     #[prost(string, tag = "2")]
@@ -289,17 +297,17 @@ pub struct GetPrivateKeysharePacketData {
 /// GetPrivateKeysharePacketAck defines a struct for the packet acknowledgment
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GetPrivateKeysharePacketAck {}
-/// AggrKeyshareDataPacketData defines a struct for the packet payload
+pub struct GetPrivateDecryptionKeyPacketAck {}
+/// DecryptionKeyDataPacketData defines a struct for the packet payload
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AggrKeyshareDataPacketData {
+pub struct DecryptionKeyDataPacketData {
     #[prost(string, tag = "1")]
     pub identity: ::prost::alloc::string::String,
     #[prost(string, tag = "2")]
     pub pubkey: ::prost::alloc::string::String,
     #[prost(string, tag = "3")]
-    pub aggr_keyshare: ::prost::alloc::string::String,
+    pub decryption_key: ::prost::alloc::string::String,
     #[prost(string, tag = "4")]
     pub aggr_height: ::prost::alloc::string::String,
     /// used for private governance
@@ -311,13 +319,14 @@ pub struct AggrKeyshareDataPacketData {
     #[prost(uint64, tag = "7")]
     pub retries: u64,
 }
-/// AggrKeyshareDataPacketAck defines a struct for the packet acknowledgment
+/// DecryptionKeyPacketAck defines a struct for the packet acknowledgment
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AggrKeyshareDataPacketAck {}
+pub struct DecryptionKeyPacketAck {}
+/// PrivateDecryptionKeyDataPacketData defines a struct for the packet payload
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct EncryptedKeysharesPacketData {
+pub struct PrivateDecryptionKeyDataPacketData {
     #[prost(string, tag = "1")]
     pub identity: ::prost::alloc::string::String,
     #[prost(string, tag = "2")]
@@ -325,11 +334,12 @@ pub struct EncryptedKeysharesPacketData {
     #[prost(string, tag = "3")]
     pub request_id: ::prost::alloc::string::String,
     #[prost(message, repeated, tag = "4")]
-    pub encrypted_keyshares: ::prost::alloc::vec::Vec<super::common::EncryptedKeyshare>,
+    pub private_decryption_key: ::prost::alloc::vec::Vec<super::common::PrivateDecryptionKey>,
 }
+/// PrivateDecryptionKeyPacketAck defines a struct for the packet payload
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct EncryptedKeysharesPacketAck {}
+pub struct PrivateDecryptionKeyPacketAck {}
 /// CurrentKeysPacketData defines a struct for the packet payload
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -418,7 +428,7 @@ pub struct QueryValidatorSetAllResponse {
 /// QueryKeyShareRequest is request type for the Query/KeyShare RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryKeyShareRequest {
+pub struct QueryKeyshareRequest {
     #[prost(string, tag = "1")]
     pub validator: ::prost::alloc::string::String,
     #[prost(uint64, tag = "2")]
@@ -427,14 +437,14 @@ pub struct QueryKeyShareRequest {
 /// QueryKeyShareResponse is response type for the Query/KeyShare RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryKeyShareResponse {
+pub struct QueryKeyshareResponse {
     #[prost(message, optional, tag = "1")]
-    pub key_share: ::core::option::Option<KeyShare>,
+    pub keyshare: ::core::option::Option<Keyshare>,
 }
 /// QueryKeyShareAllRequest is request type for the Query/KeyShareAll RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryKeyShareAllRequest {
+pub struct QueryKeyshareAllRequest {
     #[prost(message, optional, tag = "1")]
     pub pagination:
         ::core::option::Option<cosmos_sdk_proto::cosmos::base::query::v1beta1::PageRequest>,
@@ -442,41 +452,41 @@ pub struct QueryKeyShareAllRequest {
 /// QueryKeyShareAllResponse is response type for the Query/KeyShareAll RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryKeyShareAllResponse {
+pub struct QueryKeyshareAllResponse {
     #[prost(message, repeated, tag = "1")]
-    pub key_share: ::prost::alloc::vec::Vec<KeyShare>,
+    pub keyshare: ::prost::alloc::vec::Vec<Keyshare>,
     #[prost(message, optional, tag = "2")]
     pub pagination:
         ::core::option::Option<cosmos_sdk_proto::cosmos::base::query::v1beta1::PageResponse>,
 }
-/// QueryAggregatedKeyShareRequest is request type for the Query/AggregatedKeyShare RPC method.
+/// QueryDecryptionKeyRequest is request type for the Query/DecryptionKey RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryAggregatedKeyShareRequest {
+pub struct QueryDecryptionKeyRequest {
     #[prost(uint64, tag = "1")]
     pub height: u64,
 }
-/// QueryAggregatedKeyShareResponse is response type for the Query/AggregatedKeyShare RPC method.
+/// QueryDecryptionKeyResponse is response type for the Query/DecryptionKey RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryAggregatedKeyShareResponse {
+pub struct QueryDecryptionKeyResponse {
     #[prost(message, optional, tag = "1")]
-    pub aggregated_key_share: ::core::option::Option<AggregatedKeyShare>,
+    pub decryption_key: ::core::option::Option<DecryptionKey>,
 }
-/// QueryAggregatedKeyShareAllRequest is request type for the Query/AggregatedKeyShareAll RPC method.
+/// QueryDecryptionKeyAllRequest is request type for the Query/DecryptionKeyAll RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryAggregatedKeyShareAllRequest {
+pub struct QueryDecryptionKeyAllRequest {
     #[prost(message, optional, tag = "1")]
     pub pagination:
         ::core::option::Option<cosmos_sdk_proto::cosmos::base::query::v1beta1::PageRequest>,
 }
-/// QueryAggregatedKeyShareAllResponse is response type for the Query/AggregatedKeyShareAll RPC method.
+/// QueryAggregatedKeyShareAllResponse is response type for the Query/DecryptionKeyAll RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryAggregatedKeyShareAllResponse {
+pub struct QueryDecryptionKeyAllResponse {
     #[prost(message, repeated, tag = "1")]
-    pub aggregated_key_share: ::prost::alloc::vec::Vec<AggregatedKeyShare>,
+    pub decryption_keys: ::prost::alloc::vec::Vec<DecryptionKey>,
     #[prost(message, optional, tag = "2")]
     pub pagination:
         ::core::option::Option<cosmos_sdk_proto::cosmos::base::query::v1beta1::PageResponse>,
@@ -484,15 +494,15 @@ pub struct QueryAggregatedKeyShareAllResponse {
 /// QueryPubKeyRequest is request type for the Query/PubKey RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryPubKeyRequest {}
+pub struct QueryPubkeyRequest {}
 /// QueryPubKeyResponse is response type for the Query/PubKey RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryPubKeyResponse {
+pub struct QueryPubkeyResponse {
     #[prost(message, optional, tag = "1")]
-    pub active_pub_key: ::core::option::Option<ActivePubKey>,
+    pub active_pubkey: ::core::option::Option<ActivePubKey>,
     #[prost(message, optional, tag = "2")]
-    pub queued_pub_key: ::core::option::Option<QueuedPubKey>,
+    pub queued_pubkey: ::core::option::Option<QueuedPubKey>,
 }
 /// QueryAuthorizedAddressRequest is request type for the Query/AuthorizedAddress RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -529,7 +539,7 @@ pub struct QueryAuthorizedAddressAllResponse {
 /// QueryGeneralKeyShareRequest is request type for the Query/GeneralKeyShare RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryGeneralKeyShareRequest {
+pub struct QueryGeneralKeyshareRequest {
     #[prost(string, tag = "1")]
     pub validator: ::prost::alloc::string::String,
     #[prost(string, tag = "2")]
@@ -540,14 +550,14 @@ pub struct QueryGeneralKeyShareRequest {
 /// QueryGeneralKeyShareResponse is response type for the Query/GeneralKeyShare RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryGeneralKeyShareResponse {
+pub struct QueryGeneralKeyshareResponse {
     #[prost(message, optional, tag = "1")]
-    pub general_key_share: ::core::option::Option<GeneralKeyShare>,
+    pub general_keyshare: ::core::option::Option<GeneralKeyshare>,
 }
 /// QueryGeneralKeyShareAllRequest is request type for the Query/GeneralKeyShareAll RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryGeneralKeyShareAllRequest {
+pub struct QueryGeneralKeyshareAllRequest {
     #[prost(message, optional, tag = "1")]
     pub pagination:
         ::core::option::Option<cosmos_sdk_proto::cosmos::base::query::v1beta1::PageRequest>,
@@ -555,17 +565,17 @@ pub struct QueryGeneralKeyShareAllRequest {
 /// QueryGeneralKeyShareAllResponse is response type for the Query/GeneralKeyShareAll RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryGeneralKeyShareAllResponse {
+pub struct QueryGeneralKeyshareAllResponse {
     #[prost(message, repeated, tag = "1")]
-    pub general_key_share: ::prost::alloc::vec::Vec<GeneralKeyShare>,
+    pub general_keyshare: ::prost::alloc::vec::Vec<GeneralKeyshare>,
     #[prost(message, optional, tag = "2")]
     pub pagination:
         ::core::option::Option<cosmos_sdk_proto::cosmos::base::query::v1beta1::PageResponse>,
 }
-/// KeyShareRequest defines the storage structure for general keyshare requests
+/// DecryptionKeyRequest defines the storage structure for general keyshare requests
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct KeyShareRequest {
+pub struct DecryptionKeyRequest {
     #[prost(string, tag = "1")]
     pub identity: ::prost::alloc::string::String,
     #[prost(string, tag = "2")]
@@ -577,7 +587,7 @@ pub struct KeyShareRequest {
     #[prost(message, optional, tag = "4")]
     pub counterparty: ::core::option::Option<CounterPartyIbcInfo>,
     #[prost(string, tag = "5")]
-    pub aggr_keyshare: ::prost::alloc::string::String,
+    pub decryption_key: ::prost::alloc::string::String,
     /// This is only used when the request is for private governance
     #[prost(string, tag = "6")]
     pub proposal_id: ::prost::alloc::string::String,
@@ -615,11 +625,11 @@ pub struct CounterPartyIbcInfo {
     #[prost(string, tag = "4")]
     pub port_id: ::prost::alloc::string::String,
 }
-/// PrivateKeyshareRequest defines the stroage structure for private
+/// PrivateDecryptionKeyRequest defines the stroage structure for private
 /// encrypted and unaggregated keyshare requests
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PrivateKeyshareRequest {
+pub struct PrivateDecryptionKeyRequest {
     #[prost(string, tag = "1")]
     pub identity: ::prost::alloc::string::String,
     #[prost(string, tag = "2")]
@@ -631,7 +641,7 @@ pub struct PrivateKeyshareRequest {
     #[prost(message, optional, tag = "4")]
     pub counterparty: ::core::option::Option<CounterPartyIbcInfo>,
     #[prost(message, repeated, tag = "5")]
-    pub encrypted_keyshares: ::prost::alloc::vec::Vec<super::common::EncryptedKeyshare>,
+    pub private_decryption_keys: ::prost::alloc::vec::Vec<super::common::PrivateDecryptionKey>,
     #[prost(string, tag = "6")]
     pub request_id: ::prost::alloc::string::String,
     #[prost(bool, tag = "7")]
@@ -692,7 +702,7 @@ pub struct MsgSendKeyshare {
     #[prost(string, tag = "2")]
     pub message: ::prost::alloc::string::String,
     #[prost(uint64, tag = "3")]
-    pub key_share_index: u64,
+    pub keyshare_index: u64,
     #[prost(uint64, tag = "4")]
     pub block_height: u64,
 }
@@ -729,7 +739,7 @@ pub struct MsgCreateLatestPubKey {
     #[prost(uint64, tag = "4")]
     pub number_of_validators: u64,
     #[prost(message, repeated, tag = "5")]
-    pub encrypted_key_shares: ::prost::alloc::vec::Vec<EncryptedKeyShare>,
+    pub encrypted_keyshares: ::prost::alloc::vec::Vec<EncryptedKeyshare>,
 }
 /// MsgCreateLatestPubKeyResponse defines the response structure for
 /// executing a MsgCreateLatestPubKey message.
@@ -749,7 +759,7 @@ pub struct MsgOverrideLatestPubKey {
     #[prost(uint64, tag = "4")]
     pub number_of_validators: u64,
     #[prost(message, repeated, tag = "5")]
-    pub encrypted_key_shares: ::prost::alloc::vec::Vec<EncryptedKeyShare>,
+    pub encrypted_keyshares: ::prost::alloc::vec::Vec<EncryptedKeyshare>,
 }
 /// MsgOverrideLatestPubKeyResponse defines the response structure for
 /// executing a MsgOverrideLatestPubKey message.
@@ -800,10 +810,10 @@ pub struct MsgDeleteAuthorizedAddress {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgDeleteAuthorizedAddressResponse {}
-/// MsgCreateGeneralKeyShare is the Msg/CreateGeneralKeyShare request type.
+/// MsgSubmitGeneralKeyShare is the Msg/CreateGeneralKeyShare request type.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgCreateGeneralKeyShare {
+pub struct MsgSubmitGeneralKeyshare {
     #[prost(string, tag = "1")]
     pub creator: ::prost::alloc::string::String,
     #[prost(string, tag = "2")]
@@ -811,19 +821,19 @@ pub struct MsgCreateGeneralKeyShare {
     #[prost(string, tag = "3")]
     pub id_value: ::prost::alloc::string::String,
     #[prost(string, tag = "4")]
-    pub key_share: ::prost::alloc::string::String,
+    pub keyshare: ::prost::alloc::string::String,
     #[prost(uint64, tag = "5")]
-    pub key_share_index: u64,
+    pub keyshare_index: u64,
     #[prost(uint64, tag = "6")]
     pub received_timestamp: u64,
     #[prost(uint64, tag = "7")]
     pub received_block_height: u64,
 }
-/// MsgCreateGeneralKeyShareResponse defines the response structure for
-/// executing a MsgCreateGeneralKeyShare message.
+/// MsgSubmitGeneralKeyShareResponse defines the response structure for
+/// executing a MsgSubmitGeneralKeyShare message.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgCreateGeneralKeyShareResponse {
+pub struct MsgSubmitGeneralKeyshareResponse {
     #[prost(string, tag = "1")]
     pub creator: ::prost::alloc::string::String,
     #[prost(string, tag = "2")]
@@ -831,9 +841,9 @@ pub struct MsgCreateGeneralKeyShareResponse {
     #[prost(string, tag = "3")]
     pub id_value: ::prost::alloc::string::String,
     #[prost(string, tag = "4")]
-    pub key_share: ::prost::alloc::string::String,
+    pub keyshare: ::prost::alloc::string::String,
     #[prost(uint64, tag = "5")]
-    pub key_share_index: u64,
+    pub keyshare_index: u64,
     #[prost(uint64, tag = "6")]
     pub received_block_height: u64,
     #[prost(bool, tag = "7")]
@@ -852,7 +862,7 @@ pub struct MsgSubmitEncryptedKeyshare {
     #[prost(string, tag = "3")]
     pub encrypted_keyshare: ::prost::alloc::string::String,
     #[prost(uint64, tag = "4")]
-    pub key_share_index: u64,
+    pub keyshare_index: u64,
     #[prost(uint64, tag = "5")]
     pub received_timestamp: u64,
     #[prost(uint64, tag = "6")]

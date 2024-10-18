@@ -1,19 +1,19 @@
 // @generated
-/// RequestAggrKeyshare defines a struct for the data payload
+/// RequestDecryptionKey defines a struct for the data payload
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RequestAggrKeyshare {
+pub struct RequestDecryptionKey {
     #[prost(string, tag="1")]
     pub creator: ::prost::alloc::string::String,
     #[prost(message, optional, tag="4")]
     pub estimated_delay: ::core::option::Option<::prost_types::Duration>,
-    /// id can either be a rwquest id or a proposal id
-    #[prost(oneof="request_aggr_keyshare::Id", tags="2, 3")]
-    pub id: ::core::option::Option<request_aggr_keyshare::Id>,
+    /// id can either be a request id or a proposal id
+    #[prost(oneof="request_decryption_key::Id", tags="2, 3")]
+    pub id: ::core::option::Option<request_decryption_key::Id>,
 }
-/// Nested message and enum types in `RequestAggrKeyshare`.
-pub mod request_aggr_keyshare {
-    /// id can either be a rwquest id or a proposal id
+/// Nested message and enum types in `RequestDecryptionKey`.
+pub mod request_decryption_key {
+    /// id can either be a request id or a proposal id
     #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Id {
@@ -23,28 +23,28 @@ pub mod request_aggr_keyshare {
         RequestId(::prost::alloc::string::String),
     }
 }
-/// RequestAggrKeyshareResponse defines the response to the RequestAggrKeyshare message
+/// RequestDecryptionKeyResponse defines the response to the RequestDecryptionKey message
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RequestAggrKeyshareResponse {
+pub struct RequestDecryptionKeyResponse {
     #[prost(string, tag="1")]
     pub identity: ::prost::alloc::string::String,
     #[prost(string, tag="2")]
     pub pubkey: ::prost::alloc::string::String,
 }
-/// GetAggrKeyshare defines a struct for the data payload
+/// GetDecryptionKey defines a struct for the data payload
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GetAggrKeyshare {
+pub struct GetDecryptionKey {
     #[prost(string, tag="3")]
     pub identity: ::prost::alloc::string::String,
-    /// id can either be a rwquest id or a proposal id
-    #[prost(oneof="get_aggr_keyshare::Id", tags="1, 2")]
-    pub id: ::core::option::Option<get_aggr_keyshare::Id>,
+    /// id can either be a request id or a proposal id
+    #[prost(oneof="get_decryption_key::Id", tags="1, 2")]
+    pub id: ::core::option::Option<get_decryption_key::Id>,
 }
-/// Nested message and enum types in `GetAggrKeyshare`.
-pub mod get_aggr_keyshare {
-    /// id can either be a rwquest id or a proposal id
+/// Nested message and enum types in `GetDecryptionKey`.
+pub mod get_decryption_key {
+    /// id can either be a request id or a proposal id
     #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Id {
@@ -54,15 +54,15 @@ pub mod get_aggr_keyshare {
         RequestId(::prost::alloc::string::String),
     }
 }
-/// GetAggrKeyshareResponse defines the response to the GetAggrKeyshare message
+/// GetDecryptionKeyResponse defines the response to the GetDecryptionKey message
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GetAggrKeyshareResponse {
+pub struct GetDecryptionKeyResponse {
 }
-/// GetPrivateKeyshare defines a struct for the data payload
+/// GetPrivateDecryptionKey defines a struct for the data payload
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GetPrivateKeyshare {
+pub struct GetPrivateDecryptionKey {
     #[prost(string, tag="1")]
     pub request_id: ::prost::alloc::string::String,
     #[prost(string, tag="2")]
@@ -72,10 +72,10 @@ pub struct GetPrivateKeyshare {
     #[prost(string, tag="4")]
     pub secp_pubkey: ::prost::alloc::string::String,
 }
-/// GetPrivateKeyshareResponse defines the response to the GetPrivateKeyshare message
+/// GetPrivateDecryptionKeyResponse defines the response to the GetPrivateDecryptionKey message
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GetPrivateKeyshareResponse {
+pub struct GetPrivateDecryptionKeyResponse {
     #[prost(string, tag="1")]
     pub pubkey: ::prost::alloc::string::String,
 }
@@ -102,21 +102,21 @@ pub struct QueuedPublicKey {
     #[prost(uint64, tag="3")]
     pub expiry: u64,
 }
-/// RequestEncryptedKeyshare defines the structure to request for
+/// RequestPrivateDecryptionKey defines the structure to request for
 /// encrypted and unaggregated keyshares
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RequestEncryptedKeyshare {
+pub struct RequestPrivateDecryptionKey {
     #[prost(string, tag="1")]
     pub creator: ::prost::alloc::string::String,
     #[prost(string, tag="2")]
     pub request_id: ::prost::alloc::string::String,
 }
-/// EncryptedKeyshare defines the storage structure for
+/// PrivateDecryptionKey defines the storage structure for
 /// the list of encrypted keyshares (unaggregated)
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct EncryptedKeyshare {
+pub struct PrivateDecryptionKey {
     #[prost(string, tag="1")]
     pub requester: ::prost::alloc::string::String,
     #[prost(message, repeated, tag="2")]
