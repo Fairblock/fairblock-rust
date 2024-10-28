@@ -284,7 +284,7 @@ pub mod query_client {
                 .insert(GrpcMethod::new("fairyring.keyshare.Query", "DecryptionKeyAll"));
             self.inner.unary(req, path, codec).await
         }
-        pub async fn pub_key(
+        pub async fn pubkey(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryPubkeyRequest>,
         ) -> std::result::Result<
@@ -302,11 +302,11 @@ pub mod query_client {
                 })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.keyshare.Query/PubKey",
+                "/fairyring.keyshare.Query/Pubkey",
             );
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("fairyring.keyshare.Query", "PubKey"));
+                .insert(GrpcMethod::new("fairyring.keyshare.Query", "Pubkey"));
             self.inner.unary(req, path, codec).await
         }
         pub async fn authorized_address(
@@ -631,11 +631,11 @@ pub mod msg_client {
                 .insert(GrpcMethod::new("fairyring.keyshare.Msg", "SendKeyshare"));
             self.inner.unary(req, path, codec).await
         }
-        pub async fn create_latest_pub_key(
+        pub async fn create_latest_pubkey(
             &mut self,
-            request: impl tonic::IntoRequest<super::MsgCreateLatestPubKey>,
+            request: impl tonic::IntoRequest<super::MsgCreateLatestPubkey>,
         ) -> std::result::Result<
-            tonic::Response<super::MsgCreateLatestPubKeyResponse>,
+            tonic::Response<super::MsgCreateLatestPubkeyResponse>,
             tonic::Status,
         > {
             self.inner
@@ -649,18 +649,18 @@ pub mod msg_client {
                 })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.keyshare.Msg/CreateLatestPubKey",
+                "/fairyring.keyshare.Msg/CreateLatestPubkey",
             );
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("fairyring.keyshare.Msg", "CreateLatestPubKey"));
+                .insert(GrpcMethod::new("fairyring.keyshare.Msg", "CreateLatestPubkey"));
             self.inner.unary(req, path, codec).await
         }
-        pub async fn override_latest_pub_key(
+        pub async fn override_latest_pubkey(
             &mut self,
-            request: impl tonic::IntoRequest<super::MsgOverrideLatestPubKey>,
+            request: impl tonic::IntoRequest<super::MsgOverrideLatestPubkey>,
         ) -> std::result::Result<
-            tonic::Response<super::MsgOverrideLatestPubKeyResponse>,
+            tonic::Response<super::MsgOverrideLatestPubkeyResponse>,
             tonic::Status,
         > {
             self.inner
@@ -674,12 +674,12 @@ pub mod msg_client {
                 })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.keyshare.Msg/OverrideLatestPubKey",
+                "/fairyring.keyshare.Msg/OverrideLatestPubkey",
             );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(
-                    GrpcMethod::new("fairyring.keyshare.Msg", "OverrideLatestPubKey"),
+                    GrpcMethod::new("fairyring.keyshare.Msg", "OverrideLatestPubkey"),
                 );
             self.inner.unary(req, path, codec).await
         }

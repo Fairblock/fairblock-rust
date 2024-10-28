@@ -261,7 +261,7 @@ pub mod query_client {
                 .insert(GrpcMethod::new("fairyring.pep.Query", "PepNonceAll"));
             self.inner.unary(req, path, codec).await
         }
-        pub async fn pub_key(
+        pub async fn pubkey(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryPubkeyRequest>,
         ) -> std::result::Result<
@@ -279,11 +279,11 @@ pub mod query_client {
                 })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
-                "/fairyring.pep.Query/PubKey",
+                "/fairyring.pep.Query/Pubkey",
             );
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("fairyring.pep.Query", "PubKey"));
+                .insert(GrpcMethod::new("fairyring.pep.Query", "Pubkey"));
             self.inner.unary(req, path, codec).await
         }
         pub async fn general_identity(
