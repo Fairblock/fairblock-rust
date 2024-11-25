@@ -2,7 +2,7 @@ use std::{fs::File, io::Write};
 
 use anyhow::{anyhow, Result};
 use cosmos_sdk_proto::cosmos::base::query::v1beta1::PageRequest;
-use fairblock_proto::fairyring::keyshare::QueryAggregatedKeyShareAllRequest;
+use fairblock_proto::fairyring::keyshare::QueryDecryptionKeyAllRequest;
 use tonic::transport::Channel;
 
 #[derive(Debug, serde::Serialize)]
@@ -47,16 +47,16 @@ async fn main() -> Result<()> {
     });
 
     loop {
-        let request = QueryAggregatedKeyShareAllRequest {
+        let request = QueryDecryptionKeyAllRequest {
             pagination: pagination.clone(),
         };
 
         let response = keyshare_query_client
-            .aggregated_key_share_all(request)
+            .decryption_key_all(request)
             .await?
             .into_inner();
 
-        all_key_shares.extend(response.aggregated_key_share.iter().map(|key| Keyshares {
+        all_key_shares.extend(response.decryption_keys.iter().map(|key| Keyshares {
             _height: key.height,
             _keyshares: key.data.to_string(),
         }));
@@ -80,7 +80,7 @@ async fn main() -> Result<()> {
             reverse: false,
         });
 
-        println!("{:?}", response.aggregated_key_share.last());
+        println!("{:?}", response.decryption_keys.last());
 
         println!("Collected {:?} values", all_key_shares.len());
     }
