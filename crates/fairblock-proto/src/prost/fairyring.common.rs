@@ -119,4 +119,70 @@ pub struct IndexedEncryptedKeyshare {
     #[prost(uint64, tag="2")]
     pub encrypted_keyshare_index: u64,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Bid {
+    #[prost(string, tag="1")]
+    pub bidder: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub sealed_bid: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DecryptedBid {
+    #[prost(string, tag="1")]
+    pub bidder: ::prost::alloc::string::String,
+    #[prost(message, optional, tag="3")]
+    pub bid: ::core::option::Option<cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AuctionDetail {
+    #[prost(string, tag="1")]
+    pub creator: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub identity: ::prost::alloc::string::String,
+    #[prost(string, tag="3")]
+    pub pubkey: ::prost::alloc::string::String,
+    #[prost(uint64, tag="4")]
+    pub auction_id: u64,
+    #[prost(uint64, tag="5")]
+    pub resolve_at: u64,
+    #[prost(message, repeated, tag="6")]
+    pub bids: ::prost::alloc::vec::Vec<Bid>,
+    #[prost(message, repeated, tag="7")]
+    pub decrypted_bids: ::prost::alloc::vec::Vec<DecryptedBid>,
+    #[prost(bool, tag="8")]
+    pub is_timed: bool,
+    #[prost(bool, tag="9")]
+    pub is_resolved: bool,
+    #[prost(message, optional, tag="10")]
+    pub winning_bid: ::core::option::Option<DecryptedBid>,
+    #[prost(string, tag="11")]
+    pub fail_reason: ::prost::alloc::string::String,
+    #[prost(string, tag="12")]
+    pub bid_denom: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AuctionDetailList {
+    #[prost(message, repeated, tag="1")]
+    pub auction_detail: ::prost::alloc::vec::Vec<AuctionDetail>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueuedAuctionDecryption {
+    #[prost(message, optional, tag="1")]
+    pub auction_detail: ::core::option::Option<AuctionDetail>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Bidder {
+    #[prost(string, tag="1")]
+    pub address: ::prost::alloc::string::String,
+    #[prost(message, optional, tag="2")]
+    pub delegated: ::core::option::Option<cosmos_sdk_proto::cosmos::base::v1beta1::Coin>,
+    #[prost(bool, tag="3")]
+    pub active: bool,
+}
 // @@protoc_insertion_point(module)
