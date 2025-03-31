@@ -45,6 +45,8 @@ message MsgCreateAuction {
   uint64 resolve_at = 2;
   bool is_timed = 3;
   string bid_denom = 4;
+  bool is_first_price = 5;
+  bool auto_deduct_from_winner = 6;
 }
 
 message MsgCreateAuctionResponse {
