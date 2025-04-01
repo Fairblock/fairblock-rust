@@ -47,6 +47,7 @@ message MsgCreateAuction {
   string bid_denom = 4;
   bool is_first_price = 5;
   bool auto_deduct_from_winner = 6;
+  bool register_contract = 7;
 }
 
 message MsgCreateAuctionResponse {

@@ -123,6 +123,8 @@ pub struct MsgCreateAuction {
     pub is_first_price: bool,
     #[prost(bool, tag="6")]
     pub auto_deduct_from_winner: bool,
+    #[prost(bool, tag="7")]
+    pub register_contract: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
