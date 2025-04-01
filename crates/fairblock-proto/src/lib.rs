@@ -10,4 +10,8 @@ pub mod fairyring {
     pub mod pep {
         include!("prost/fairyring.pep.rs");
     }
+
+    pub mod auction {
+        include!("prost/fairyring.auction.rs");
+    }
 }
