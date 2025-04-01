@@ -119,6 +119,10 @@ pub struct MsgCreateAuction {
     pub is_timed: bool,
     #[prost(string, tag="4")]
     pub bid_denom: ::prost::alloc::string::String,
+    #[prost(bool, tag="5")]
+    pub is_first_price: bool,
+    #[prost(bool, tag="6")]
+    pub auto_deduct_from_winner: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -162,6 +166,8 @@ pub struct MsgResolveAuctionResponse {
 pub struct MsgRegisterBidder {
     #[prost(string, tag="1")]
     pub creator: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub bidder: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -174,6 +180,8 @@ pub struct MsgRegisterBidderResponse {
 pub struct MsgDeregisterBidder {
     #[prost(string, tag="1")]
     pub creator: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub bidder: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]

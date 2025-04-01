@@ -80,6 +80,7 @@ message MsgResolveAuctionResponse {}
 message MsgRegisterBidder {
   option (cosmos.msg.v1.signer) = "creator";
   string creator = 1;
+  string bidder = 2;
 }
 
 message MsgRegisterBidderResponse {
@@ -89,6 +90,7 @@ message MsgRegisterBidderResponse {
 message MsgDeregisterBidder {
   option (cosmos.msg.v1.signer) = "creator";
   string creator = 1;
+  string bidder = 2;
 }
 
 message MsgDeregisterBidderResponse {
